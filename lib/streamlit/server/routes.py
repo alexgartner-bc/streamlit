@@ -206,7 +206,7 @@ class MediaFileHandler(tornado.web.StaticFileHandler):
 
 
 class _SpecialRequestHandler(tornado.web.RequestHandler):
-    """Superclass for "special" endpoints, like /healthz."""
+    """Superclass for "special" endpoints, like /healthz-streamlit."""
 
     def set_default_headers(self):
         self.set_header("Cache-Control", "no-cache")
@@ -255,7 +255,7 @@ class HealthHandler(_SpecialRequestHandler):
             # Tornado will set the _xsrf cookie automatically for the page on
             # request for the document. However, if the server is reset and
             # server.enableXsrfProtection is updated, the browser does not reload the document.
-            # Manually setting the cookie on /healthz since it is pinged when the
+            # Manually setting the cookie on /healthz-streamlit since it is pinged when the
             # browser is disconnected from the server.
             if config.get_option("server.enableXsrfProtection"):
                 self.set_cookie("_xsrf", self.xsrf_token)
